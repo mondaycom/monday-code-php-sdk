@@ -65,7 +65,7 @@ No authorization required
 ## `getSecureStorage()`
 
 ```php
-getSecureStorage($key): \OpenAPI\Client\Model\StorageDataContract
+getSecureStorage($key): \OpenAPI\Client\Model\SecureStorageDataContract
 ```
 
 
@@ -101,7 +101,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\StorageDataContract**](../Model/StorageDataContract.md)
+[**\OpenAPI\Client\Model\SecureStorageDataContract**](../Model/SecureStorageDataContract.md)
 
 ### Authorization
 
@@ -119,7 +119,7 @@ No authorization required
 ## `putSecureStorage()`
 
 ```php
-putSecureStorage($key, $storage_data_contract)
+putSecureStorage($key, $secure_storage_data_contract): mixed
 ```
 
 
@@ -138,10 +138,11 @@ $apiInstance = new OpenAPI\Client\Api\SecureStorageApi(
     new GuzzleHttp\Client()
 );
 $key = 'key_example'; // string
-$storage_data_contract = new \OpenAPI\Client\Model\StorageDataContract(); // \OpenAPI\Client\Model\StorageDataContract
+$secure_storage_data_contract = new \OpenAPI\Client\Model\SecureStorageDataContract(); // \OpenAPI\Client\Model\SecureStorageDataContract
 
 try {
-    $apiInstance->putSecureStorage($key, $storage_data_contract);
+    $result = $apiInstance->putSecureStorage($key, $secure_storage_data_contract);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SecureStorageApi->putSecureStorage: ', $e->getMessage(), PHP_EOL;
 }
@@ -152,11 +153,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **key** | **string**|  | |
-| **storage_data_contract** | [**\OpenAPI\Client\Model\StorageDataContract**](../Model/StorageDataContract.md)|  | |
+| **secure_storage_data_contract** | [**\OpenAPI\Client\Model\SecureStorageDataContract**](../Model/SecureStorageDataContract.md)|  | |
 
 ### Return type
 
-void (empty response body)
+**mixed**
 
 ### Authorization
 
@@ -165,7 +166,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

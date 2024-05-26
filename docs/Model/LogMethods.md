@@ -1,10 +1,8 @@
-# # StorageDataContract
+# # LogMethods
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **string** |  |
-**value** | [**\OpenAPI\Client\Model\JsonValue**](JsonValue.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

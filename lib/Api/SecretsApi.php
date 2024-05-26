@@ -1,6 +1,6 @@
 <?php
 /**
- * SecureStorageApi
+ * SecretsApi
  * PHP version 7.4
  *
  * @category Class
@@ -40,14 +40,14 @@ use OpenAPI\Client\HeaderSelector;
 use OpenAPI\Client\ObjectSerializer;
 
 /**
- * SecureStorageApi Class Doc Comment
+ * SecretsApi Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SecureStorageApi
+class SecretsApi
 {
     /**
      * @var ClientInterface
@@ -71,13 +71,10 @@ class SecureStorageApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'deleteSecureStorage' => [
+        'getSecret' => [
             'application/json',
         ],
-        'getSecureStorage' => [
-            'application/json',
-        ],
-        'putSecureStorage' => [
+        'getSecretKeys' => [
             'application/json',
         ],
     ];
@@ -129,255 +126,34 @@ class SecureStorageApi
     }
 
     /**
-     * Operation deleteSecureStorage
+     * Operation getSecret
      *
-     * @param  string $key key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecureStorage'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function deleteSecureStorage($key, string $contentType = self::contentTypes['deleteSecureStorage'][0])
-    {
-        $this->deleteSecureStorageWithHttpInfo($key, $contentType);
-    }
-
-    /**
-     * Operation deleteSecureStorageWithHttpInfo
-     *
-     * @param  string $key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecureStorage'] to see the possible values for this operation
+     * @param  string $name name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return string|\OpenAPI\Client\Model\GetByKeyFromStorage404Response
      */
-    public function deleteSecureStorageWithHttpInfo($key, string $contentType = self::contentTypes['deleteSecureStorage'][0])
+    public function getSecret($name, string $contentType = self::contentTypes['getSecret'][0])
     {
-        $request = $this->deleteSecureStorageRequest($key, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation deleteSecureStorageAsync
-     *
-     * @param  string $key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecureStorage'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteSecureStorageAsync($key, string $contentType = self::contentTypes['deleteSecureStorage'][0])
-    {
-        return $this->deleteSecureStorageAsyncWithHttpInfo($key, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteSecureStorageAsyncWithHttpInfo
-     *
-     * @param  string $key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecureStorage'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteSecureStorageAsyncWithHttpInfo($key, string $contentType = self::contentTypes['deleteSecureStorage'][0])
-    {
-        $returnType = '';
-        $request = $this->deleteSecureStorageRequest($key, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'deleteSecureStorage'
-     *
-     * @param  string $key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecureStorage'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteSecureStorageRequest($key, string $contentType = self::contentTypes['deleteSecureStorage'][0])
-    {
-
-        // verify the required parameter 'key' is set
-        if ($key === null || (is_array($key) && count($key) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $key when calling deleteSecureStorage'
-            );
-        }
-
-
-        $resourcePath = '/secure-storage/{key}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($key !== null) {
-            $resourcePath = str_replace(
-                '{' . 'key' . '}',
-                ObjectSerializer::toPathValue($key),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getSecureStorage
-     *
-     * @param  string $key key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecureStorage'] to see the possible values for this operation
-     *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SecureStorageDataContract|\OpenAPI\Client\Model\GetByKeyFromStorage404Response
-     */
-    public function getSecureStorage($key, string $contentType = self::contentTypes['getSecureStorage'][0])
-    {
-        list($response) = $this->getSecureStorageWithHttpInfo($key, $contentType);
+        list($response) = $this->getSecretWithHttpInfo($name, $contentType);
         return $response;
     }
 
     /**
-     * Operation getSecureStorageWithHttpInfo
+     * Operation getSecretWithHttpInfo
      *
-     * @param  string $key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecureStorage'] to see the possible values for this operation
+     * @param  string $name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SecureStorageDataContract|\OpenAPI\Client\Model\GetByKeyFromStorage404Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\OpenAPI\Client\Model\GetByKeyFromStorage404Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSecureStorageWithHttpInfo($key, string $contentType = self::contentTypes['getSecureStorage'][0])
+    public function getSecretWithHttpInfo($name, string $contentType = self::contentTypes['getSecret'][0])
     {
-        $request = $this->getSecureStorageRequest($key, $contentType);
+        $request = $this->getSecretRequest($name, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -416,11 +192,11 @@ class SecureStorageApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SecureStorageDataContract' === '\SplFileObject') {
+                    if ('string' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SecureStorageDataContract' !== 'string') {
+                        if ('string' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -438,7 +214,7 @@ class SecureStorageApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SecureStorageDataContract', []),
+                        ObjectSerializer::deserialize($content, 'string', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -471,7 +247,7 @@ class SecureStorageApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SecureStorageDataContract';
+            $returnType = 'string';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -504,7 +280,7 @@ class SecureStorageApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SecureStorageDataContract',
+                        'string',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -523,17 +299,17 @@ class SecureStorageApi
     }
 
     /**
-     * Operation getSecureStorageAsync
+     * Operation getSecretAsync
      *
-     * @param  string $key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecureStorage'] to see the possible values for this operation
+     * @param  string $name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSecureStorageAsync($key, string $contentType = self::contentTypes['getSecureStorage'][0])
+    public function getSecretAsync($name, string $contentType = self::contentTypes['getSecret'][0])
     {
-        return $this->getSecureStorageAsyncWithHttpInfo($key, $contentType)
+        return $this->getSecretAsyncWithHttpInfo($name, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -542,18 +318,18 @@ class SecureStorageApi
     }
 
     /**
-     * Operation getSecureStorageAsyncWithHttpInfo
+     * Operation getSecretAsyncWithHttpInfo
      *
-     * @param  string $key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecureStorage'] to see the possible values for this operation
+     * @param  string $name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSecureStorageAsyncWithHttpInfo($key, string $contentType = self::contentTypes['getSecureStorage'][0])
+    public function getSecretAsyncWithHttpInfo($name, string $contentType = self::contentTypes['getSecret'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\SecureStorageDataContract';
-        $request = $this->getSecureStorageRequest($key, $contentType);
+        $returnType = 'string';
+        $request = $this->getSecretRequest($name, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -592,26 +368,26 @@ class SecureStorageApi
     }
 
     /**
-     * Create request for operation 'getSecureStorage'
+     * Create request for operation 'getSecret'
      *
-     * @param  string $key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecureStorage'] to see the possible values for this operation
+     * @param  string $name (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecret'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSecureStorageRequest($key, string $contentType = self::contentTypes['getSecureStorage'][0])
+    public function getSecretRequest($name, string $contentType = self::contentTypes['getSecret'][0])
     {
 
-        // verify the required parameter 'key' is set
-        if ($key === null || (is_array($key) && count($key) === 0)) {
+        // verify the required parameter 'name' is set
+        if ($name === null || (is_array($name) && count($name) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $key when calling getSecureStorage'
+                'Missing the required parameter $name when calling getSecret'
             );
         }
 
 
-        $resourcePath = '/secure-storage/{key}';
+        $resourcePath = '/secrets/{name}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -621,10 +397,10 @@ class SecureStorageApi
 
 
         // path params
-        if ($key !== null) {
+        if ($name !== null) {
             $resourcePath = str_replace(
-                '{' . 'key' . '}',
-                ObjectSerializer::toPathValue($key),
+                '{' . 'name' . '}',
+                ObjectSerializer::toPathValue($name),
                 $resourcePath
             );
         }
@@ -684,36 +460,32 @@ class SecureStorageApi
     }
 
     /**
-     * Operation putSecureStorage
+     * Operation getSecretKeys
      *
-     * @param  string $key key (required)
-     * @param  \OpenAPI\Client\Model\SecureStorageDataContract $secure_storage_data_contract secure_storage_data_contract (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putSecureStorage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecretKeys'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return mixed
+     * @return string[]
      */
-    public function putSecureStorage($key, $secure_storage_data_contract, string $contentType = self::contentTypes['putSecureStorage'][0])
+    public function getSecretKeys(string $contentType = self::contentTypes['getSecretKeys'][0])
     {
-        list($response) = $this->putSecureStorageWithHttpInfo($key, $secure_storage_data_contract, $contentType);
+        list($response) = $this->getSecretKeysWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation putSecureStorageWithHttpInfo
+     * Operation getSecretKeysWithHttpInfo
      *
-     * @param  string $key (required)
-     * @param  \OpenAPI\Client\Model\SecureStorageDataContract $secure_storage_data_contract (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putSecureStorage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecretKeys'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of mixed, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function putSecureStorageWithHttpInfo($key, $secure_storage_data_contract, string $contentType = self::contentTypes['putSecureStorage'][0])
+    public function getSecretKeysWithHttpInfo(string $contentType = self::contentTypes['getSecretKeys'][0])
     {
-        $request = $this->putSecureStorageRequest($key, $secure_storage_data_contract, $contentType);
+        $request = $this->getSecretKeysRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -752,11 +524,11 @@ class SecureStorageApi
 
             switch($statusCode) {
                 case 200:
-                    if ('mixed' === '\SplFileObject') {
+                    if ('string[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('mixed' !== 'string') {
+                        if ('string[]' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -774,13 +546,13 @@ class SecureStorageApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, 'mixed', []),
+                        ObjectSerializer::deserialize($content, 'string[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = 'mixed';
+            $returnType = 'string[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -813,7 +585,7 @@ class SecureStorageApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'mixed',
+                        'string[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -824,18 +596,16 @@ class SecureStorageApi
     }
 
     /**
-     * Operation putSecureStorageAsync
+     * Operation getSecretKeysAsync
      *
-     * @param  string $key (required)
-     * @param  \OpenAPI\Client\Model\SecureStorageDataContract $secure_storage_data_contract (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putSecureStorage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecretKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putSecureStorageAsync($key, $secure_storage_data_contract, string $contentType = self::contentTypes['putSecureStorage'][0])
+    public function getSecretKeysAsync(string $contentType = self::contentTypes['getSecretKeys'][0])
     {
-        return $this->putSecureStorageAsyncWithHttpInfo($key, $secure_storage_data_contract, $contentType)
+        return $this->getSecretKeysAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -844,19 +614,17 @@ class SecureStorageApi
     }
 
     /**
-     * Operation putSecureStorageAsyncWithHttpInfo
+     * Operation getSecretKeysAsyncWithHttpInfo
      *
-     * @param  string $key (required)
-     * @param  \OpenAPI\Client\Model\SecureStorageDataContract $secure_storage_data_contract (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putSecureStorage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecretKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putSecureStorageAsyncWithHttpInfo($key, $secure_storage_data_contract, string $contentType = self::contentTypes['putSecureStorage'][0])
+    public function getSecretKeysAsyncWithHttpInfo(string $contentType = self::contentTypes['getSecretKeys'][0])
     {
-        $returnType = 'mixed';
-        $request = $this->putSecureStorageRequest($key, $secure_storage_data_contract, $contentType);
+        $returnType = 'string[]';
+        $request = $this->getSecretKeysRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -895,34 +663,18 @@ class SecureStorageApi
     }
 
     /**
-     * Create request for operation 'putSecureStorage'
+     * Create request for operation 'getSecretKeys'
      *
-     * @param  string $key (required)
-     * @param  \OpenAPI\Client\Model\SecureStorageDataContract $secure_storage_data_contract (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putSecureStorage'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecretKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function putSecureStorageRequest($key, $secure_storage_data_contract, string $contentType = self::contentTypes['putSecureStorage'][0])
+    public function getSecretKeysRequest(string $contentType = self::contentTypes['getSecretKeys'][0])
     {
 
-        // verify the required parameter 'key' is set
-        if ($key === null || (is_array($key) && count($key) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $key when calling putSecureStorage'
-            );
-        }
 
-        // verify the required parameter 'secure_storage_data_contract' is set
-        if ($secure_storage_data_contract === null || (is_array($secure_storage_data_contract) && count($secure_storage_data_contract) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $secure_storage_data_contract when calling putSecureStorage'
-            );
-        }
-
-
-        $resourcePath = '/secure-storage/{key}';
+        $resourcePath = '/secrets';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -931,14 +683,6 @@ class SecureStorageApi
 
 
 
-        // path params
-        if ($key !== null) {
-            $resourcePath = str_replace(
-                '{' . 'key' . '}',
-                ObjectSerializer::toPathValue($key),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -948,14 +692,7 @@ class SecureStorageApi
         );
 
         // for model (json/xml)
-        if (isset($secure_storage_data_contract)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($secure_storage_data_contract));
-            } else {
-                $httpBody = $secure_storage_data_contract;
-            }
-        } elseif (count($formParams) > 0) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -994,7 +731,7 @@ class SecureStorageApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'PUT',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -4,16 +4,16 @@ All URIs are relative to http://localhost:59999, except if the operation defines
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**deleteStorage()**](StorageApi.md#deleteStorage) | **DELETE** /storage/{key} |  |
-| [**getStorage()**](StorageApi.md#getStorage) | **GET** /storage/{key} |  |
-| [**putStorage()**](StorageApi.md#putStorage) | **PUT** /storage/{key} |  |
-| [**storageIncrementCounter()**](StorageApi.md#storageIncrementCounter) | **PUT** /storage/{key}/counter/increment |  |
+| [**deleteByKeyFromStorage()**](StorageApi.md#deleteByKeyFromStorage) | **DELETE** /storage/{key} |  |
+| [**getByKeyFromStorage()**](StorageApi.md#getByKeyFromStorage) | **GET** /storage/{key} |  |
+| [**incrementCounter()**](StorageApi.md#incrementCounter) | **PUT** /storage/counter/increment |  |
+| [**upsertByKeyFromStorage()**](StorageApi.md#upsertByKeyFromStorage) | **PUT** /storage/{key} |  |
 
 
-## `deleteStorage()`
+## `deleteByKeyFromStorage()`
 
 ```php
-deleteStorage($key, $x_monday_access_token)
+deleteByKeyFromStorage($key, $x_monday_access_token)
 ```
 
 
@@ -35,9 +35,9 @@ $key = 'key_example'; // string
 $x_monday_access_token = 'x_monday_access_token_example'; // string
 
 try {
-    $apiInstance->deleteStorage($key, $x_monday_access_token);
+    $apiInstance->deleteByKeyFromStorage($key, $x_monday_access_token);
 } catch (Exception $e) {
-    echo 'Exception when calling StorageApi->deleteStorage: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StorageApi->deleteByKeyFromStorage: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -65,10 +65,10 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getStorage()`
+## `getByKeyFromStorage()`
 
 ```php
-getStorage($key, $shared, $x_monday_access_token): \OpenAPI\Client\Model\StorageDataContract
+getByKeyFromStorage($key, $shared, $x_monday_access_token): \OpenAPI\Client\Model\StorageDataContract
 ```
 
 
@@ -91,10 +91,10 @@ $shared = True; // bool
 $x_monday_access_token = 'x_monday_access_token_example'; // string
 
 try {
-    $result = $apiInstance->getStorage($key, $shared, $x_monday_access_token);
+    $result = $apiInstance->getByKeyFromStorage($key, $shared, $x_monday_access_token);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StorageApi->getStorage: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StorageApi->getByKeyFromStorage: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -123,10 +123,10 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `putStorage()`
+## `incrementCounter()`
 
 ```php
-putStorage($key, $x_monday_access_token, $shared, $previous_version, $storage_data_contract)
+incrementCounter($x_monday_access_token, $increment_counter_params): mixed
 ```
 
 
@@ -144,16 +144,14 @@ $apiInstance = new OpenAPI\Client\Api\StorageApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$key = 'key_example'; // string
 $x_monday_access_token = 'x_monday_access_token_example'; // string
-$shared = True; // bool
-$previous_version = 'previous_version_example'; // string
-$storage_data_contract = new \OpenAPI\Client\Model\StorageDataContract(); // \OpenAPI\Client\Model\StorageDataContract
+$increment_counter_params = new \OpenAPI\Client\Model\IncrementCounterParams(); // \OpenAPI\Client\Model\IncrementCounterParams
 
 try {
-    $apiInstance->putStorage($key, $x_monday_access_token, $shared, $previous_version, $storage_data_contract);
+    $result = $apiInstance->incrementCounter($x_monday_access_token, $increment_counter_params);
+    print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StorageApi->putStorage: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StorageApi->incrementCounter: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -161,15 +159,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **key** | **string**|  | |
 | **x_monday_access_token** | **string**|  | |
-| **shared** | **bool**|  | |
-| **previous_version** | **string**|  | |
-| **storage_data_contract** | [**\OpenAPI\Client\Model\StorageDataContract**](../Model/StorageDataContract.md)|  | |
+| **increment_counter_params** | [**\OpenAPI\Client\Model\IncrementCounterParams**](../Model/IncrementCounterParams.md)|  | |
 
 ### Return type
 
-void (empty response body)
+**mixed**
 
 ### Authorization
 
@@ -178,16 +173,16 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `storageIncrementCounter()`
+## `upsertByKeyFromStorage()`
 
 ```php
-storageIncrementCounter($x_monday_access_token, $key, $increment_counter_params)
+upsertByKeyFromStorage($key, $x_monday_access_token, $storage_data_contract, $shared, $previous_version): mixed
 ```
 
 
@@ -205,14 +200,17 @@ $apiInstance = new OpenAPI\Client\Api\StorageApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$x_monday_access_token = 'x_monday_access_token_example'; // string
 $key = 'key_example'; // string
-$increment_counter_params = new \OpenAPI\Client\Model\IncrementCounterParams(); // \OpenAPI\Client\Model\IncrementCounterParams
+$x_monday_access_token = 'x_monday_access_token_example'; // string
+$storage_data_contract = new \OpenAPI\Client\Model\StorageDataContract(); // \OpenAPI\Client\Model\StorageDataContract
+$shared = True; // bool
+$previous_version = 'previous_version_example'; // string
 
 try {
-    $apiInstance->storageIncrementCounter($x_monday_access_token, $key, $increment_counter_params);
+    $result = $apiInstance->upsertByKeyFromStorage($key, $x_monday_access_token, $storage_data_contract, $shared, $previous_version);
+    print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StorageApi->storageIncrementCounter: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StorageApi->upsertByKeyFromStorage: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -220,13 +218,15 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_monday_access_token** | **string**|  | |
 | **key** | **string**|  | |
-| **increment_counter_params** | [**\OpenAPI\Client\Model\IncrementCounterParams**](../Model/IncrementCounterParams.md)|  | |
+| **x_monday_access_token** | **string**|  | |
+| **storage_data_contract** | [**\OpenAPI\Client\Model\StorageDataContract**](../Model/StorageDataContract.md)|  | |
+| **shared** | **bool**|  | [optional] |
+| **previous_version** | **string**|  | [optional] |
 
 ### Return type
 
-void (empty response body)
+**mixed**
 
 ### Authorization
 
@@ -235,7 +235,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

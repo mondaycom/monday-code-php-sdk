@@ -1,6 +1,6 @@
 <?php
 /**
- * Period
+ * LogMethods
  *
  * PHP version 7.4
  *
@@ -30,23 +30,25 @@ namespace OpenAPI\Client\Model;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * Period Class Doc Comment
+ * LogMethods Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Period
+class LogMethods
 {
     /**
      * Possible values of this enum
      */
-    public const DAILY = 'DAILY';
+    public const DEBUG = 'debug';
 
-    public const MONTHLY = 'MONTHLY';
+    public const ERROR = 'error';
 
-    public const YEARLY = 'YEARLY';
+    public const WARN = 'warn';
+
+    public const INFO = 'info';
 
     /**
      * Gets allowable values of the enum
@@ -55,9 +57,10 @@ class Period
     public static function getAllowableEnumValues()
     {
         return [
-            self::DAILY,
-            self::MONTHLY,
-            self::YEARLY
+            self::DEBUG,
+            self::ERROR,
+            self::WARN,
+            self::INFO
         ];
     }
 }

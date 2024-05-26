@@ -1,6 +1,6 @@
 <?php
 /**
- * ValidateSecretResponse
+ * GetByKeyFromStorage500Response
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ValidateSecretResponse Class Doc Comment
+ * GetByKeyFromStorage500Response Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetByKeyFromStorage500Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ValidateSecretResponse';
+    protected static $openAPIModelName = 'getByKeyFromStorage_500_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'valid' => 'bool'
+        'reason' => 'string'
     ];
 
     /**
@@ -68,7 +68,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'valid' => null
+        'reason' => null
     ];
 
     /**
@@ -77,7 +77,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'valid' => false
+        'reason' => false
     ];
 
     /**
@@ -166,7 +166,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'valid' => 'valid'
+        'reason' => 'reason'
     ];
 
     /**
@@ -175,7 +175,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'valid' => 'setValid'
+        'reason' => 'setReason'
     ];
 
     /**
@@ -184,7 +184,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'valid' => 'getValid'
+        'reason' => 'getReason'
     ];
 
     /**
@@ -244,7 +244,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('valid', $data ?? [], null);
+        $this->setIfExists('reason', $data ?? [], null);
     }
 
     /**
@@ -274,9 +274,6 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['valid'] === null) {
-            $invalidProperties[] = "'valid' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -293,28 +290,28 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets valid
+     * Gets reason
      *
-     * @return bool
+     * @return string|null
      */
-    public function getValid()
+    public function getReason()
     {
-        return $this->container['valid'];
+        return $this->container['reason'];
     }
 
     /**
-     * Sets valid
+     * Sets reason
      *
-     * @param bool $valid valid
+     * @param string|null $reason reason
      *
      * @return self
      */
-    public function setValid($valid)
+    public function setReason($reason)
     {
-        if (is_null($valid)) {
-            throw new \InvalidArgumentException('non-nullable valid cannot be null');
+        if (is_null($reason)) {
+            throw new \InvalidArgumentException('non-nullable reason cannot be null');
         }
-        $this->container['valid'] = $valid;
+        $this->container['reason'] = $reason;
 
         return $this;
     }

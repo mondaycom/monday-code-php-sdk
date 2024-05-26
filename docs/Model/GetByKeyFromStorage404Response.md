@@ -1,10 +1,9 @@
-# # StorageDataContract
+# # GetByKeyFromStorage404Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **string** |  |
-**value** | [**\OpenAPI\Client\Model\JsonValue**](JsonValue.md) |  |
+**reason** | **string** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
