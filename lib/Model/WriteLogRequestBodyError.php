@@ -1,6 +1,6 @@
 <?php
 /**
- * ValidateSecretResponse
+ * WriteLogRequestBodyError
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ValidateSecretResponse Class Doc Comment
+ * WriteLogRequestBodyError Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class WriteLogRequestBodyError implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ValidateSecretResponse';
+    protected static $openAPIModelName = 'WriteLogRequestBody_error';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'valid' => 'bool'
+        
     ];
 
     /**
@@ -68,7 +68,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'valid' => null
+        
     ];
 
     /**
@@ -77,7 +77,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'valid' => false
+        
     ];
 
     /**
@@ -166,7 +166,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'valid' => 'valid'
+        
     ];
 
     /**
@@ -175,7 +175,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'valid' => 'setValid'
+        
     ];
 
     /**
@@ -184,7 +184,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'valid' => 'getValid'
+        
     ];
 
     /**
@@ -244,7 +244,6 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('valid', $data ?? [], null);
     }
 
     /**
@@ -274,9 +273,6 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['valid'] === null) {
-            $invalidProperties[] = "'valid' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -291,33 +287,6 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets valid
-     *
-     * @return bool
-     */
-    public function getValid()
-    {
-        return $this->container['valid'];
-    }
-
-    /**
-     * Sets valid
-     *
-     * @param bool $valid valid
-     *
-     * @return self
-     */
-    public function setValid($valid)
-    {
-        if (is_null($valid)) {
-            throw new \InvalidArgumentException('non-nullable valid cannot be null');
-        }
-        $this->container['valid'] = $valid;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *

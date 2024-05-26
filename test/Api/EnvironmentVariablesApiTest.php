@@ -1,6 +1,6 @@
 <?php
 /**
- * SecureStorageApiTest
+ * EnvironmentVariablesApiTest
  * PHP version 7.4
  *
  * @category Class
@@ -33,14 +33,14 @@ use \OpenAPI\Client\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SecureStorageApiTest Class Doc Comment
+ * EnvironmentVariablesApiTest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SecureStorageApiTest extends TestCase
+class EnvironmentVariablesApiTest extends TestCase
 {
 
     /**
@@ -72,36 +72,24 @@ class SecureStorageApiTest extends TestCase
     }
 
     /**
-     * Test case for deleteSecureStorage
+     * Test case for getEnvironmentVariable
      *
      * .
      *
      */
-    public function testDeleteSecureStorage()
+    public function testGetEnvironmentVariable()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSecureStorage
+     * Test case for getEnvironmentVariableKeys
      *
      * .
      *
      */
-    public function testGetSecureStorage()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for putSecureStorage
-     *
-     * .
-     *
-     */
-    public function testPutSecureStorage()
+    public function testGetEnvironmentVariableKeys()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

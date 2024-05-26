@@ -1,6 +1,6 @@
 <?php
 /**
- * SecureStorageApiTest
+ * LogsApiTest
  * PHP version 7.4
  *
  * @category Class
@@ -33,14 +33,14 @@ use \OpenAPI\Client\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SecureStorageApiTest Class Doc Comment
+ * LogsApiTest Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SecureStorageApiTest extends TestCase
+class LogsApiTest extends TestCase
 {
 
     /**
@@ -72,36 +72,12 @@ class SecureStorageApiTest extends TestCase
     }
 
     /**
-     * Test case for deleteSecureStorage
+     * Test case for writeLog
      *
      * .
      *
      */
-    public function testDeleteSecureStorage()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for getSecureStorage
-     *
-     * .
-     *
-     */
-    public function testGetSecureStorage()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for putSecureStorage
-     *
-     * .
-     *
-     */
-    public function testPutSecureStorage()
+    public function testWriteLog()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

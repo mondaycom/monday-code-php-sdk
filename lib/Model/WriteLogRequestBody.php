@@ -1,6 +1,6 @@
 <?php
 /**
- * ValidateSecretResponse
+ * WriteLogRequestBody
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ValidateSecretResponse Class Doc Comment
+ * WriteLogRequestBody Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class WriteLogRequestBody implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ValidateSecretResponse';
+    protected static $openAPIModelName = 'WriteLogRequestBody';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,9 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'valid' => 'bool'
+        'error' => '\OpenAPI\Client\Model\WriteLogRequestBodyError',
+        'message' => 'string',
+        'method' => '\OpenAPI\Client\Model\LogMethods'
     ];
 
     /**
@@ -68,7 +70,9 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'valid' => null
+        'error' => null,
+        'message' => null,
+        'method' => null
     ];
 
     /**
@@ -77,7 +81,9 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'valid' => false
+        'error' => false,
+        'message' => false,
+        'method' => false
     ];
 
     /**
@@ -166,7 +172,9 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'valid' => 'valid'
+        'error' => 'error',
+        'message' => 'message',
+        'method' => 'method'
     ];
 
     /**
@@ -175,7 +183,9 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'valid' => 'setValid'
+        'error' => 'setError',
+        'message' => 'setMessage',
+        'method' => 'setMethod'
     ];
 
     /**
@@ -184,7 +194,9 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'valid' => 'getValid'
+        'error' => 'getError',
+        'message' => 'getMessage',
+        'method' => 'getMethod'
     ];
 
     /**
@@ -244,7 +256,9 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('valid', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('method', $data ?? [], null);
     }
 
     /**
@@ -274,8 +288,11 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['valid'] === null) {
-            $invalidProperties[] = "'valid' can't be null";
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
+        }
+        if ($this->container['method'] === null) {
+            $invalidProperties[] = "'method' can't be null";
         }
         return $invalidProperties;
     }
@@ -293,28 +310,82 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets valid
+     * Gets error
      *
-     * @return bool
+     * @return \OpenAPI\Client\Model\WriteLogRequestBodyError|null
      */
-    public function getValid()
+    public function getError()
     {
-        return $this->container['valid'];
+        return $this->container['error'];
     }
 
     /**
-     * Sets valid
+     * Sets error
      *
-     * @param bool $valid valid
+     * @param \OpenAPI\Client\Model\WriteLogRequestBodyError|null $error error
      *
      * @return self
      */
-    public function setValid($valid)
+    public function setError($error)
     {
-        if (is_null($valid)) {
-            throw new \InvalidArgumentException('non-nullable valid cannot be null');
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
-        $this->container['valid'] = $valid;
+        $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->container['message'];
+    }
+
+    /**
+     * Sets message
+     *
+     * @param string $message message
+     *
+     * @return self
+     */
+    public function setMessage($message)
+    {
+        if (is_null($message)) {
+            throw new \InvalidArgumentException('non-nullable message cannot be null');
+        }
+        $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets method
+     *
+     * @return \OpenAPI\Client\Model\LogMethods
+     */
+    public function getMethod()
+    {
+        return $this->container['method'];
+    }
+
+    /**
+     * Sets method
+     *
+     * @param \OpenAPI\Client\Model\LogMethods $method method
+     *
+     * @return self
+     */
+    public function setMethod($method)
+    {
+        if (is_null($method)) {
+            throw new \InvalidArgumentException('non-nullable method cannot be null');
+        }
+        $this->container['method'] = $method;
 
         return $this;
     }

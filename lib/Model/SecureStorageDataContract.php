@@ -1,6 +1,6 @@
 <?php
 /**
- * ValidateSecretResponse
+ * SecureStorageDataContract
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * ValidateSecretResponse Class Doc Comment
+ * SecureStorageDataContract Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class SecureStorageDataContract implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ValidateSecretResponse';
+    protected static $openAPIModelName = 'SecureStorageDataContract';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'valid' => 'bool'
+        'value' => 'mixed'
     ];
 
     /**
@@ -68,7 +68,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'valid' => null
+        'value' => null
     ];
 
     /**
@@ -77,7 +77,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'valid' => false
+        'value' => true
     ];
 
     /**
@@ -166,7 +166,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'valid' => 'valid'
+        'value' => 'value'
     ];
 
     /**
@@ -175,7 +175,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'valid' => 'setValid'
+        'value' => 'setValue'
     ];
 
     /**
@@ -184,7 +184,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'valid' => 'getValid'
+        'value' => 'getValue'
     ];
 
     /**
@@ -244,7 +244,7 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('valid', $data ?? [], null);
+        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -274,8 +274,8 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        if ($this->container['valid'] === null) {
-            $invalidProperties[] = "'valid' can't be null";
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
         return $invalidProperties;
     }
@@ -293,28 +293,35 @@ class ValidateSecretResponse implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets valid
+     * Gets value
      *
-     * @return bool
+     * @return mixed
      */
-    public function getValid()
+    public function getValue()
     {
-        return $this->container['valid'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets valid
+     * Sets value
      *
-     * @param bool $valid valid
+     * @param mixed $value value
      *
      * @return self
      */
-    public function setValid($valid)
+    public function setValue($value)
     {
-        if (is_null($valid)) {
-            throw new \InvalidArgumentException('non-nullable valid cannot be null');
+        if (is_null($value)) {
+            array_push($this->openAPINullablesSetToNull, 'value');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('value', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['valid'] = $valid;
+        $this->container['value'] = $value;
 
         return $this;
     }
