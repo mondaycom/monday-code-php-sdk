@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**payload** | **array<string,mixed>** | Construct a type with a set of properties K of type T | [optional]
 **error** | [**\OpenAPI\Client\Model\WriteLogRequestBodyError**](WriteLogRequestBodyError.md) |  | [optional]
 **message** | **string** |  |
 **method** | [**\OpenAPI\Client\Model\LogMethods**](LogMethods.md) |  |
