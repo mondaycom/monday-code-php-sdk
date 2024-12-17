@@ -7,6 +7,7 @@ All URIs are relative to http://localhost:59999, except if the operation defines
 | [**deleteByKeyFromStorage()**](StorageApi.md#deleteByKeyFromStorage) | **DELETE** /storage/{key} |  |
 | [**getByKeyFromStorage()**](StorageApi.md#getByKeyFromStorage) | **GET** /storage/{key} |  |
 | [**incrementCounter()**](StorageApi.md#incrementCounter) | **PUT** /storage/counter/increment |  |
+| [**searchRecord()**](StorageApi.md#searchRecord) | **GET** /storage/search/{term} |  |
 | [**upsertByKeyFromStorage()**](StorageApi.md#upsertByKeyFromStorage) | **PUT** /storage/{key} |  |
 
 
@@ -173,6 +174,64 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `searchRecord()`
+
+```php
+searchRecord($term, $x_monday_access_token, $cursor): mixed
+```
+
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new OpenAPI\Client\Api\StorageApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$term = 'term_example'; // string
+$x_monday_access_token = 'x_monday_access_token_example'; // string
+$cursor = 'cursor_example'; // string
+
+try {
+    $result = $apiInstance->searchRecord($term, $x_monday_access_token, $cursor);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling StorageApi->searchRecord: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **term** | **string**|  | |
+| **x_monday_access_token** | **string**|  | |
+| **cursor** | **string**|  | [optional] |
+
+### Return type
+
+**mixed**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
