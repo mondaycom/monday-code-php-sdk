@@ -241,7 +241,7 @@ No authorization required
 ## `upsertByKeyFromStorage()`
 
 ```php
-upsertByKeyFromStorage($key, $x_monday_access_token, $json_data_contract, $shared, $previous_version): \OpenAPI\Client\Model\UpsertByKeyFromStorage200Response
+upsertByKeyFromStorage($key, $x_monday_access_token, $json_data_contract, $shared, $previous_version, $ttl): \OpenAPI\Client\Model\UpsertByKeyFromStorage200Response
 ```
 
 
@@ -264,9 +264,10 @@ $x_monday_access_token = 'x_monday_access_token_example'; // string
 $json_data_contract = new \OpenAPI\Client\Model\JsonDataContract(); // \OpenAPI\Client\Model\JsonDataContract
 $shared = True; // bool
 $previous_version = 'previous_version_example'; // string
+$ttl = 3.4; // float
 
 try {
-    $result = $apiInstance->upsertByKeyFromStorage($key, $x_monday_access_token, $json_data_contract, $shared, $previous_version);
+    $result = $apiInstance->upsertByKeyFromStorage($key, $x_monday_access_token, $json_data_contract, $shared, $previous_version, $ttl);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StorageApi->upsertByKeyFromStorage: ', $e->getMessage(), PHP_EOL;
@@ -282,6 +283,7 @@ try {
 | **json_data_contract** | [**\OpenAPI\Client\Model\JsonDataContract**](../Model/JsonDataContract.md)|  | |
 | **shared** | **bool**|  | [optional] |
 | **previous_version** | **string**|  | [optional] |
+| **ttl** | **float**|  | [optional] |
 
 ### Return type
 
